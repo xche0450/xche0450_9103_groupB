@@ -1,6 +1,7 @@
 const R_DARK = [143, 19, 12];
 const R_GLOW = [235, 55, 24];
 
+// Draw the fixed background for the hell scene.
 function drawHellScenery() {
   background(14, 24, 35);
   noStroke();
@@ -39,6 +40,7 @@ function drawHellScenery() {
   circle(844, 1094, 153);
 }
 
+// Draw a dead tree using its base position and branch direction.
 function drawDeadTree(x, y, dir) {
   stroke(20, 18, 24);
   strokeWeight(10);
@@ -53,6 +55,7 @@ function drawDeadTree(x, y, dir) {
   noStroke();
 }
 
+// Draw the moving moon, castle, and bats.
 function drawHellLive(anim) {
   noStroke();
 
@@ -70,6 +73,7 @@ function drawHellLive(anim) {
   }
 }
 
+// Draw the moon and adjust its size and light with the music.
 function drawMoon(x, y, d, glow) {
   fill(255, 66, 27, 30 + glow * 60);
   circle(x, y, d * 1.35);
@@ -83,6 +87,7 @@ function drawMoon(x, y, d, glow) {
   circle(x - d * 0.24, y - d * 0.16, d * 0.07);
 }
 
+// Draw a bat with wings that move as flap changes.
 function drawBat(x, y, s, flap) {
   push();
   translate(x, y);
@@ -116,7 +121,9 @@ function drawBat(x, y, s, flap) {
   pop();
 }
 
+// Draw the hell castle and its glowing details.
 class Castle {
+  // Place, scale, and animate the castle.
   display(x, y, size, anim) {
     let red = mixColor(R_DARK, R_GLOW, anim.glow);
     let door = mixColor([228, 48, 18], [255, 140, 40], anim.glow);
@@ -229,6 +236,7 @@ class Castle {
     pop();
   }
 
+  // Draw a window whose light flickers over time.
   drawWindow(x, y, size, anim, index) {
     let light = noise(index * 10, anim.flicker * 0.5);
     fill(255, 200 + light * 50, 120 + light * 80);
@@ -239,6 +247,7 @@ class Castle {
   }
 }
 
+// Draw evenly spaced spikes along a horizontal edge.
 function drawSpikes(x, y, w, count, h) {
   let step = w / count;
   for (let i = 0; i < count; i++) {
@@ -246,6 +255,7 @@ function drawSpikes(x, y, w, count, h) {
   }
 }
 
+// Use Perlin noise to vary the flame. Source: https://p5js.org/reference/p5/noise/
 function drawTorch(x, y, size, t) {
   push();
   translate(x, y);

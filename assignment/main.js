@@ -19,6 +19,7 @@ function preload() {
   preloadAudio();
 }
 
+// Set up the canvas and start the shared audio controls.
 function setup() {
   let h = windowHeight - 70;
   let w = Math.floor(h * 928 / 1998);
@@ -28,6 +29,7 @@ function setup() {
   setupAudio();
 }
 
+// Draw both worlds, their reflections, and the starting frames.
 function buildWorlds() {
   heavenScale = width / 928;
   hellScale = width / 900;
@@ -70,6 +72,7 @@ function buildWorlds() {
   makeSegments();
 }
 
+// Return the pixel position at the top of a grid row.
 function rowTop(r) {
   let y = Math.round(r * segH);
   if (y > height) {
@@ -78,6 +81,7 @@ function rowTop(r) {
   return y;
 }
 
+// Draw one world above the water and the other as its reflection.
 function drawLiveFrame(hellOnTop) {
   noStroke();
   if (hellOnTop) {
@@ -95,11 +99,13 @@ function drawLiveFrame(hellOnTop) {
   }
 }
 
+// Add a light blue tint to the reflection area.
 function drawWaterTint() {
   fill(24, 163, 239, 40);
   rect(0, topH, width, botH);
 }
 
+// Draw the moving heaven scene, flipped when it is below the water.
 function drawHeavenPart(upsideDown) {
   push();
   if (upsideDown) {
@@ -113,6 +119,7 @@ function drawHeavenPart(upsideDown) {
   pop();
 }
 
+// Draw the moving hell scene, flipped when it is below the water.
 function drawHellPart(upsideDown) {
   push();
   if (upsideDown) {
@@ -126,6 +133,7 @@ function drawHellPart(upsideDown) {
   pop();
 }
 
+// Update and draw one frame of the animation.
 function draw() {
   updateTimeValues();
   updateAudioValues();
@@ -153,6 +161,7 @@ function draw() {
   updateSounds();
 }
 
+// Keep a blend amount between 0 and 1.
 function limit01(v) {
   if (v < 0) {
     return 0;
@@ -163,6 +172,7 @@ function limit01(v) {
   return v;
 }
 
+// Blend two RGB colors by amount t.
 function mixColor(c1, c2, t) {
   t = limit01(t);
   let r = c1[0] + (c2[0] - c1[0]) * t;
@@ -171,6 +181,7 @@ function mixColor(c1, c2, t) {
   return [r, g, b];
 }
 
+// Resize the canvas and rebuild the scenes to fit the window.
 function windowResized() {
   let h = windowHeight - 70;
   let w = Math.floor(h * 928 / 1998);
