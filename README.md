@@ -14,10 +14,6 @@ This repository belongs to **xche0450** from *Group B*.
 
 [University of Sydney Canvas](https://canvas.sydney.edu.au/)
 
-### README image practice
-
-![An image of the Mona Lisa](readmeImages/Mona_Lisa_by_Leonardo_da_Vinci_500_x_700.jpg)
-
 > This README was prepared as part of the GitHub Extra Lesson.
 
 ### Lesson checklist
