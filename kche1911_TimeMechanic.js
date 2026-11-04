@@ -3,9 +3,7 @@
 // Owner: kche1911
 // Time values and reflection ripples.
 // Moving parts in heaven (clouds, flags, waterfall, birds) are in heaven.js.
-// ==============================================================
-
- // Update every frame: time values for castle breathing,
+// Update every frame: time values for castle breathing,
  // flag movement, and torch flickering
  function updateTimeValues() {
    heavenAnim.breathe = Math.sin(frameCount * 0.03);
