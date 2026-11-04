@@ -20,7 +20,8 @@ let allSegmentInfo = [];
 
 // Mouse timing 
 
-// A segment stays open 
+// Number of frames that a mouse-revealed segment stays open.
+// This delay makes the opposite world fade back gradually.
 let FLIP_FRAMES = 110;
 
 // Control sound play
@@ -156,14 +157,16 @@ function updateWaves() {
   // Store the ripples that are still visible
   let stillAlive = [];
 
-  // Width of the visible ripple edge
+  // Scale the visible ripple edge with the segment width so it
+  // stays proportional when the browser window changes size.
   let band = segW * 1.3;
 
   // Check every active ripple
   for (let i = 0; i < waves.length; i++) {
     let wave = waves[i];
 
-    // Make the ripple larger over time
+    // Make the ripple larger over time. Using the canvas width
+    // keeps its speed visually consistent on different screens.
     let age = frameCount - wave.startFrame;
     let radius = age * width * 0.007;
 
@@ -247,7 +250,8 @@ function mouseMoved() {
     return;
   }
 
-  // Radius of the circular mouse lens
+  // Keep the mouse lens proportional to the canvas width so the
+  // reveal area feels similar on different screen sizes.
   let lensRadius = width * 0.1;
 
   // Count newly revealed segments
@@ -279,6 +283,7 @@ function mouseMoved() {
         newFlips = newFlips + 1;
       }
 
+      // Extend the reveal timer while the mouse remains nearby.
       segment.flipUntil =
         frameCount + FLIP_FRAMES;
     }
@@ -327,7 +332,8 @@ function mousePressed() {
     1
   );
 
-  // Check for a quick second click
+  // Treat a second click within 18 frames as a double click.
+  // A double click starts the transition between the two worlds.
   if (
     frameCount - lastClickFrame < 18
   ) {

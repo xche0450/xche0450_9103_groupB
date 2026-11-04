@@ -14,7 +14,8 @@ let swapSound;
 let audioButton;
 let volumeSlider;
 
-// Sound data for the shared visual animation
+// Sound data for the shared visual animation.
+// Amplitude controls glow and sway in both worlds.
 let amp;
 let fft;
 
@@ -42,11 +43,18 @@ function setupAudio() {
 // Use the sound level to animate both worlds
 function updateAudioValues() {
   let level = amp.getLevel();
+
+  // Convert the usual sound-level range to 0-1 so it can be
+  // shared safely with the visual animation variables.
   let glow = map(level, 0, 0.3, 0, 1);
   glow = limitAudioValue(glow);
 
+  // Use slightly different speeds for Heaven and Hell. The small
+  // multiplier keeps the audio-driven castle movement subtle.
   heavenAnim.sway = Math.sin(frameCount * 0.05) * level * 0.08;
   hellAnim.sway = Math.sin(frameCount * 0.06) * level * 0.08;
+
+  // Louder audio makes both worlds glow more strongly.
   heavenAnim.glow = glow;
   hellAnim.glow = glow;
 }
@@ -68,7 +76,9 @@ function togglePlaying() {
 function updateSounds() {
   let volume = volumeSlider.value();
 
-  // The vertical mouse position mixes Heaven and Hell
+  // The vertical mouse position mixes Heaven and Hell. The range
+  // around the waterline creates a gradual change instead of a
+  // sudden switch between the two tracks.
   let topShare = map(
     mouseY,
     topH - height * 0.3,
@@ -86,6 +96,8 @@ function updateSounds() {
     heavenShare = 1 - topShare;
   }
 
+  // Keep each track slightly audible, then give the selected world
+  // most of the remaining volume for a smooth crossfade.
   heavenSound.setVolume(
     volume * (0.25 + heavenShare * 0.75)
   );
