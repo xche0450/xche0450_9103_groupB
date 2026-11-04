@@ -1,3 +1,4 @@
+// Track the world swap and the pictures used during the transition.
 let transition = 0;
 let transitionLength = 150;
 let goingToHell = false;
@@ -5,13 +6,16 @@ let transitionSeed = 0;
 let oldPicture = null;
 let newPicture = null;
 
+// Track the timing and position of each signal glitch.
 let glitchStartFrame = -1000;
 let glitchNumber = 0;
 let glitchRow = 0;
 let glitchLength = 50;
 
+// Store the petals and embers currently on screen.
 let particles = [];
 
+// A petal or ember that drifts across the scene.
 class Particle {
   constructor(isPetal) {
     this.isPetal = isPetal;
@@ -61,6 +65,7 @@ class Particle {
   }
 }
 
+// Update particles and remove any that have faded away.
 function updateParticles() {
   if (random() < 0.12) {
     particles.push(new Particle(!swapped));
@@ -77,6 +82,7 @@ function updateParticles() {
   particles = keep;
 }
 
+// Start a short glitch every 600 frames when no swap is running.
 function checkGlitchTimer() {
   if (frameCount % 600 == 0 && transition == 0) {
     glitchStartFrame = frameCount;
@@ -86,6 +92,7 @@ function checkGlitchTimer() {
   }
 }
 
+// Return how strong the current glitch is.
 function glitchStrength() {
   let framesPassed = frameCount - glitchStartFrame;
   if (framesPassed > glitchLength) {
@@ -94,6 +101,8 @@ function glitchStrength() {
   return Math.sin(Math.PI * framesPassed / glitchLength);
 }
 
+// Shift nearby rows smoothly with Perlin noise.
+// Source: https://p5js.org/reference/p5/noise/
 function glitchShift(row) {
   let strength = glitchStrength();
   if (strength == 0) {
@@ -107,6 +116,7 @@ function glitchShift(row) {
   return Math.round(map(n, 0, 1, -1, 1) * width * 0.35 * strength);
 }
 
+// Shift each row for the water ripple and TV glitch effects.
 function applyRowOffsets() {
   let firstRow = TOP_ROWS;
   if (glitchStrength() > 0) {
@@ -126,6 +136,8 @@ function applyRowOffsets() {
   }
 }
 
+// Draw one image row with a horizontal offset.
+// Source: https://p5js.org/reference/p5/image/ (source rectangle)
 function drawRow(picture, pictureY, y, h, shift) {
   image(picture, shift, y, width, h, 0, pictureY, width, h);
   if (shift > 0) {
@@ -135,6 +147,7 @@ function drawRow(picture, pictureY, y, h, shift) {
   }
 }
 
+// Begin swapping the heaven and hell scenes.
 function startSwap() {
   if (transition > 0) {
     return;
@@ -149,6 +162,7 @@ function startSwap() {
   playEffect(glitchSound, 0.2);
 }
 
+// Reveal the new world in noisy, shifting rows.
 function drawTransition() {
   if (oldPicture == null) {
     drawLiveFrame(!swapped);
