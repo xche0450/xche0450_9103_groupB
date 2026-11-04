@@ -1,4 +1,4 @@
-Heaven / Hell
+# Heaven / Hell
 
 **IDEA9103 Creative Coding · Group B**
 
@@ -6,7 +6,7 @@ Heaven / Hell is an interactive p5.js artwork inspired by Hieronymus Bosch's *Th
 
 The project focuses on a single cohesive scene rather than reproducing Bosch's entire triptych. Heaven and Hell were drawn as original p5.js scenes using geometric shapes, transformations, colour and animation.
 
-Interaction instructions
+## Interaction instructions
 
 1. Open `assignment/index.html` with a local web server such as **Live Server**. The audio files will not load correctly if the HTML file is opened directly.
 2. Click **PLAY** below the artwork to start the music. Use the slider to adjust the overall volume.
@@ -19,29 +19,29 @@ Interaction instructions
 
 Browsers normally block audio until the viewer presses PLAY or interacts with the page.
 
-Inspiration
+## Inspiration
 
-The Garden of Earthly Delights
+### The Garden of Earthly Delights
 
 Our main inspiration is Hieronymus Bosch's *The Garden of Earthly Delights*. We were interested in its contrast between Paradise and punishment, its fantastical architecture and the way separate worlds coexist within one composition. We translated these ideas into two simplified coded environments divided by water.
 
 - [Hieronymus Bosch, The Garden of Earthly Delights Triptych, Museo Nacional del Prado](https://www.museodelprado.es/en/the-collection/art-work/triptych-garden-earthly-delights/02388242-6d6a-4e9e-a992-e1311eab3609)
 
-Reflections in water
+### Reflections in water
 
 A still lake shows the world upside down. We use the waterline as the boundary between Heaven and Hell, turning the reflection into a window to the opposite world.
 
-Silent Hill
+### Silent Hill
 
 The transition between the normal world and the Otherworld in *Silent Hill* influenced the exchange between Heaven and Hell. Our scene changes in irregular horizontal rows instead of switching with a single flash. This is a visual reference only; no game code or assets were copied.
 
 - [Silent Hill, Konami](https://www.konami.com/games/eu/en/products/silenthill/)
 
-Analogue television signal loss
+### Analogue television signal loss
 
 The horizontal displacement of a damaged analogue television signal inspired the timed glitch effect. Rows of the image slide by different amounts, briefly splitting objects across the screen.
 
-Mechanic ownership
+## Mechanic ownership
 
 The project implements all four mechanic categories in the brief. Responsibilities are shown below.
 
@@ -65,32 +65,32 @@ Developed the Heaven scene and repeated animation for castles, flags, birds, tor
 
 Audio is a distinct project mechanic as well as part of the atmosphere. `p5.Amplitude()` measures the sound level and uses it to drive visual glow, castle sway, waterline thickness and reflection strength. Mouse position also changes the balance and stereo position of the Heaven and Hell tracks.
 
-Techniques
+## Techniques
 
-Building the two worlds
+### Building the two worlds
 
 - Static scenery is drawn when the worlds are built and saved using `get()`.
 - Animated elements such as castles, the sun, moon, birds and bats are redrawn every frame.
 - `push()`, `translate()`, `scale()` and `rotate()` position the scenes and create the inverted reflection.
 - The source-rectangle form of `image()` redraws small horizontal sections of a saved image to create reflection and glitch displacement.
 
-User input
+### User input
 
 `input.js` divides the canvas into a grid of image segments. `mouseMoved()` measures the distance between the pointer and each segment, temporarily revealing nearby parts of the opposite world. `mousePressed()` creates expanding ripples. A short frame timer detects a quick second click and starts the world-swap transition.
 
-Perlin noise and randomness
+### Perlin noise and randomness
 
 `noise.js` uses `noise()` and `random()` to create smooth particles, distortion and transition timing. During a world swap, Perlin noise controls when image rows change, producing an irregular transition rather than a uniform wipe. A timed glitch also moves selected rows sideways like a damaged television signal.
 
-Time-based animation
+### Time-based animation
 
 `time.js` uses `frameCount` and `Math.sin()` to generate repeated breathing, flag, torch and reflection movement. These animations continue without direct input from the viewer.
 
-Audio
+### Audio
 
 `audio.js` uses the p5.sound library to load two background tracks and several short effects. Mouse position controls stereo panning and the balance between the two tracks. `p5.Amplitude()` measures overall sound level and maps it to subtle glow, sway, waterline thickness and reflection strength.
 
-Main p5.js techniques
+### Main p5.js techniques
 
 - `noise()` in `noise.js` and `hell.js`: smooth particles, distortion and non-uniform transitions.
 - `random()` in `noise.js`: particle position, size and movement variation.
@@ -100,7 +100,7 @@ Main p5.js techniques
 - Classes in `input.js`, `noise.js` and `hell.js`: image segments, particles and Hell castle structure.
 - `loadSound()`, `p5.Amplitude()` and `map()` in `audio.js`: sound playback, volume analysis and audio-driven visual response.
 
-Key decisions
+## Key decisions
 
 - **Mouse-only interaction:** the project can be explored immediately without learning keyboard controls.
 - **Noise instead of random flashing:** smooth row displacement creates an organic transition and avoids rapidly flashing blocks.
@@ -108,7 +108,7 @@ Key decisions
 - **One descriptive module per mechanic:** input, audio, noise and time behaviour are separated into clearly named JavaScript files so individual contributions remain visible.
 - **Responsive rebuilding:** `windowResized()` resizes the canvas and rebuilds the world when the browser height changes.
 
-Code structure
+## Code structure
 
 `main.js`: Creates the canvas, builds both worlds and combines all modules in the main draw loop.
 
@@ -126,7 +126,7 @@ Code structure
 
 `index.html`: Loads p5.js, p5.sound and the project modules in the required order.
 
-How the main functions and classes work
+### How the main functions and classes work
 
 `main.js`
 
@@ -171,11 +171,11 @@ How the main functions and classes work
 
 `hell.js` uses `Castle` and drawing functions to build the Hell background and animate its castle, moon, torches, windows and bats.
 
-Module connection
+### Module connection
 
 `index.html` loads the drawing and mechanic files before `main.js`. This gives the main program access to their shared functions and variables. `main.js` then calls each module in a controlled order: time and audio values are updated first, the two worlds are drawn, image segments and reflections are applied, and particles, ripples, glitches and sounds are updated last.
 
-Git contribution history
+## Git contribution history
 
 The final `integration` branch preserves the original authors of the individual mechanic commits. At the time of final integration, Git history showed at least three commits for each member:
 
@@ -185,7 +185,7 @@ The final `integration` branch preserves the original authors of the individual 
 
 The separate mechanic branches were merged into `integration` instead of copying only their final files, so the individual author history remains visible.
 
-How to run
+## How to run
 
 1. Clone or download this repository.
 2. Open the repository folder in Visual Studio Code.
@@ -196,11 +196,11 @@ How to run
 
 The repository includes local copies of p5.js and p5.sound in `assignment/libraries`.
 
-AI acknowledgement
+## AI acknowledgement
 
 OpenAI ChatGPT and Codex were used to identify missing connections between `index.html`, the separate mechanic files and the shared main program. This included checking script-loading order, connecting audio preload and setup functions, identifying shared variable dependencies and testing the integrated branch. The team reviewed, tested and edited the final integration.
 
-AI-generated audio
+### AI-generated audio
 
 The following audio files in `assignment/sounds/` were generated using an AI audio generation tool specifically for this project. Prompts requested contrasting Heaven and Hell atmospheres and short sounds for reveal, ripple, swap and glitch interactions:
 
@@ -213,7 +213,7 @@ The following audio files in `assignment/sounds/` were generated using an AI aud
 
 The team selected the generated audio and connected it to the project using the p5.sound library.
 
-External references
+## External references
 
 - [The Garden of Earthly Delights, Museo Nacional del Prado](https://www.museodelprado.es/en/the-collection/art-work/triptych-garden-earthly-delights/02388242-6d6a-4e9e-a992-e1311eab3609): main artistic inspiration.
 - [Silent Hill, Konami](https://www.konami.com/games/eu/en/products/silenthill/): visual inspiration for the world transition.
@@ -224,22 +224,22 @@ External references
 - IDEA9103 Week 10 tutorial: sound loading, volume, panning, buttons and sliders.
 - IDEA9103 Week 11 tutorial: timing with `frameCount`.
 
-Team contributions
+## Team contributions
 
-xche0450
+### xche0450
 
 - Developed the user-input mechanic.
 - Implemented image-segment reveal, click ripples and double-click swapping.
 - Developed and connected the audio mechanic.
 - Integrated the team branches and tested the combined project.
 
-Ruilin1130
+### Ruilin1130
 
 - Designed and programmed the Hell environment.
 - Developed the Perlin noise and randomness mechanic.
 - Implemented particles, glitch displacement, transitions and the shared main framework.
 
-kche1911
+### kche1911
 
 - Designed and programmed the Heaven environment.
 - Developed the time-based mechanic.
