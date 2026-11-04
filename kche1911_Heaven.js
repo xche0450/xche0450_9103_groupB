@@ -1,4 +1,4 @@
-// heaven.js — Heaven
+// Heaven
 // ---------- Colors ----------
 const H_PINK = [255, 159, 184];      // Light pink: main castle
 const H_PINK_MID = [238, 112, 153];  // Medium pink: columns
@@ -8,7 +8,7 @@ const H_YELLOW = [255, 233, 105];
 const H_DARK = [30, 48, 62];
 const H_WATER = [139, 218, 251];
 
-// 1. Background (does not move)
+// 1. Background
 function drawHeavenScenery() {
   background(48, 176, 241);
   noStroke();
@@ -178,10 +178,6 @@ function mixColor(c1, c2, t) {
 }
 
 // ---------- Castle ----------
-// a.sway    Side-to-side movement (music, 0 when quiet)
-// a.breathe Small breathing movement (time)
-// a.flag    Flag movement (time)
-// a.glow    0–1, brighter with louder music
 function drawHeavenCastle(a) {
   let pink = mixColor(H_PINK, H_PINK_GLOW, a.glow * 0.8);
   let pinkMid = mixColor(H_PINK_MID, H_PINK, a.glow * 0.6);
@@ -362,7 +358,6 @@ function drawSmallSpire(x, pink, pinkMid) {
 }
 
 // ---------- Birds ----------
-// s = size, flap = -1 to 1 (wing movement), dir = 1 (right)
 function drawHeavenBird(x, y, s, flap, dir) {
   push();
   translate(x, y);
