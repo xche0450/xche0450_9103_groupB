@@ -178,10 +178,10 @@ function mixColor(c1, c2, t) {
 }
 
 // ---------- Castle ----------
-// a.sway    Side-to-side movement (music, 0 when quiet)
-// a.breathe Small breathing movement (time)
-// a.flag    Flag movement (time)
-// a.glow    0–1, brighter with louder music
+// a.sway: side-to-side movement from sound.
+// a.breathe: slow movement from the time mechanic.
+// a.flag: flag movement from the time mechanic.
+// a.glow: brightness value between 0 and 1.
 function drawHeavenCastle(a) {
   let pink = mixColor(H_PINK, H_PINK_GLOW, a.glow * 0.8);
   let pinkMid = mixColor(H_PINK_MID, H_PINK, a.glow * 0.6);
@@ -362,7 +362,7 @@ function drawSmallSpire(x, pink, pinkMid) {
 }
 
 // ---------- Birds ----------
-// s = size, flap = -1 to 1 (wing movement), dir = 1 (right)
+// s is size, flap moves the wings, and dir controls direction.
 function drawHeavenBird(x, y, s, flap, dir) {
   push();
   translate(x, y);
