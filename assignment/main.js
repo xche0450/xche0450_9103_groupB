@@ -15,6 +15,10 @@ let swapped = false;
 let heavenAnim = { sway: 0, breathe: 0, flag: 0, glow: 0 };
 let hellAnim = { sway: 0, breathe: 0, glow: 0, flicker: 0 };
 
+function preload() {
+  preloadAudio();
+}
+
 function setup() {
   let h = windowHeight - 70;
   let w = Math.floor(h * 928 / 1998);

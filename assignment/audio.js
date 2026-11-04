@@ -39,6 +39,18 @@ function setupAudio() {
   fft = new p5.FFT(0.8, 256);
 }
 
+// Use the sound level to animate both worlds
+function updateAudioValues() {
+  let level = amp.getLevel();
+  let glow = map(level, 0, 0.3, 0, 1);
+  glow = limitAudioValue(glow);
+
+  heavenAnim.sway = Math.sin(frameCount * 0.05) * level * 0.08;
+  hellAnim.sway = Math.sin(frameCount * 0.06) * level * 0.08;
+  heavenAnim.glow = glow;
+  hellAnim.glow = glow;
+}
+
 // Play or pause both background sounds
 function togglePlaying() {
   if (heavenSound.isPlaying() == false) {
