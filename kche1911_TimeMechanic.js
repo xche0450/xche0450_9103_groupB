@@ -21,3 +21,4 @@ function rowOffset(row) {
   let strength = 0.012 + amp.getLevel() * 0.1;
   return Math.round(wave * width * strength * (0.3 + depth));
 }
+// Signal loss intensity: smoothly changes from 0 to 1 and back to 0, without flickering.
