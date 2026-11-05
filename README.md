@@ -1,8 +1,10 @@
-# Heaven / Hell
+# The Cycle of Life
 
 **IDEA9103 Creative Coding · Group B**
 
-Heaven / Hell is an interactive p5.js artwork inspired by Hieronymus Bosch's *The Garden of Earthly Delights*. A bright pink castle stands above a reflective waterline, while a dark red castle appears in the inverted world below. Mouse interaction, time-based animation, Perlin noise and sound continuously pull the two worlds into each other.
+
+
+*The Cycle of Life* is an interactive p5.js artwork inspired by Hieronymus Bosch's *The Garden of Earthly Delights*. A bright pink castle stands above a reflective waterline, while a dark red castle appears in the inverted world below. Mouse interaction, time-based animation, Perlin noise and sound continuously pull the two worlds into each other.
 
 The project focuses on a single cohesive scene rather than reproducing Bosch's entire triptych. Heaven and Hell were drawn as original p5.js scenes using geometric shapes, transformations, colour and animation.
 
