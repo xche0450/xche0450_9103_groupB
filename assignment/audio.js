@@ -1,4 +1,6 @@
 // Audio for the Heaven / Hell project
+// AI acknowledgement: the sound files in assignment/sounds were
+// generated with an AI audio generation tool and selected by the team.
 
 // Background music
 let heavenSound;

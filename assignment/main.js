@@ -1,3 +1,7 @@
+// AI acknowledgement: ChatGPT and Codex helped the team review the
+// connections between the mechanic files and the shared main program.
+// The team reviewed, tested, and edited the final integration.
+
 let heavenTopImg;
 let heavenBottomImg;
 let hellTopImg;
